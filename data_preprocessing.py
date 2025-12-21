@@ -7,13 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1-26xLepFZqR_1aX4e3VqeKXDd3cytMSf
 """
 
-# GOAL: Load the text such that we get classification (line 1), lines 2-15 (data) --> split into the 6 columns, 2 lines of space
-
-#1. Load the text file
-
-# columns = [sample number, interval number, fx, fy, fz, tx, ty, tz, class]
-#mod operator: % ---> if x%15 == 0: that means x is divisible by 15 bc the mod operator gives back the remainder after division
-
 from google.colab import drive
 drive.mount('/content/drive')
 
