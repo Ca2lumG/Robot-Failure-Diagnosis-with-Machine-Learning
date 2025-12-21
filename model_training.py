@@ -43,45 +43,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import GridSearchCV
-#log_reg_model = LogisticRegression(max_iter=1000) - 0.8333333333333334
-#log_reg_model = LogisticRegression(max_iter=2500) - 0.8333333333333334
-#log_reg_model = LogisticRegression(max_iter=500) - 0.7777777777777778
-#log_reg_model = LogisticRegression(max_iter=1500) - 0.8333333333333334
-#log_reg_model = DecisionTreeClassifier(max_depth=3) - 0.7777777777777778
-#log_reg_model = DecisionTreeClassifier(max_depth=5) - 0.7222222222222222
-#log_reg_model = DecisionTreeClassifier(max_depth=2) - 0.7777777777777778
-#log_reg_model = DecisionTreeClassifier(max_depth=3, min_samples_split=5) - 0.7777777777777778
-#log_reg_model = DecisionTreeClassifier(max_depth=3, min_samples_split=10) - 0.7777777777777778
-#log_reg_model = DecisionTreeClassifier(max_depth=3, min_samples_split=20) - 0.7222222222222222
-#log_reg_model = KNeighborsClassifier(n_neighbors=3) - 0.8888888888888888
-#log_reg_model = KNeighborsClassifier(n_neighbors=1) - 0.8333333333333334
-#log_reg_model = KNeighborsClassifier(n_neighbors=5) - 0.6111111111111112
-#log_reg_model = KNeighborsClassifier(n_neighbors=7) - 0.5555555555555556
-#log_reg_model = KNeighborsClassifier(n_neighbors=4) - 0.7222222222222222
-#log_reg_model = KNeighborsClassifier(n_neighbors=2) - 0.8888888888888888
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(3)) - 0.5555555555555556
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(3,4)) - 0.3888888888888889
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(3,4,5)) - 0.6666666666666666
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(3,4,5,6)) - 0.5555555555555556
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(3,4,5,6,7,8,9,10,11,12)) - 0.8333333333333334
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(13,13,15)) - 0.7222222222222222
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(20,20,20)) - 0.7222222222222222
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(30,30,30)) - 0.7777777777777778
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(25,25,20,30)) - 0.7777777777777778
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(20)) - 0.7777777777777778
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(10,10)) - 0.7222222222222222
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(10,15)) - 0.5555555555555556
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(20,20)) - 0.9444444444444444
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(25,25)) - 0.8888888888888888
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(22,23)) - 0.9444444444444444
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(24,23)) - 0.8888888888888888
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(19,19)) - 0.7777777777777778
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(22,22)) - 0.7222222222222222
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(23,22)) - 0.8333333333333334
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(21,22)) - 0.7777777777777778
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(5,21,22)) - 0.6111111111111112
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(20,25)) - 0.8888888888888888
-#log_reg_model = MLPClassifier(hidden_layer_sizes=(20,20, 5)) - 0.8888888888888888
 mlp = MLPClassifier()
 
 parameter_space = {
@@ -110,11 +71,6 @@ rf.fit(X_train, y_train)
 
 print('Best parameters found:\n', rf.best_params_)
 
-'''
-Best parameters found:
- {'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2, 'n_estimators': 100}
- '''
-
 from xgboost import XGBClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import LabelEncoder
@@ -141,20 +97,6 @@ xgb.fit(X_train, y_encoded)
 
 print('Best parameters found:\n', xgb.best_params_)
 
-'''
-Best parameters found:
- {'colsample_bytree': 0.7, 'gamma': 0.1, 'learning_rate': 0.1, 'max_depth': 3, 'min_child_weight': 1, 'n_estimators': 100, 'reg_alpha': 0.1, 'reg_lambda': 1, 'subsample': 0.8}
- '''
-
-"""1. initialize a new model
-
-2. define the parameter space(look up documentation, for finding hyperparameters that can be tuned)
-
-3. set up grid search
-
-4. train the grid search model
-"""
-
 print('Best parameters found:\n', log_reg_model.best_params_)
 
 means = log_reg_model.cv_results_['mean_test_score']
@@ -173,8 +115,6 @@ print(y_test)
 from sklearn.metrics import accuracy_score
 acc = accuracy_score(y_pred, y_test)
 print(acc)
-
-"""class sklearn.neural_network.MLPClassifier(hidden_layer_sizes=(100,), activation='relu', *, solver='adam', alpha=0.0001, batch_size='auto', learning_rate='constant', learning_rate_init=0.001, power_t=0.5, max_iter=200, shuffle=True, random_state=None, tol=0.0001, verbose=False, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08, n_iter_no_change=10, max_fun=15000)"""
 
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
@@ -223,63 +163,7 @@ from sklearn.metrics import accuracy_score
 acc = accuracy_score(y_pred, y_test)
 print(acc)
 
-#0.7777777777777778 - 1
-#0.7222222222222222 - 2
-#0.7777777777777778 - 3
-#0.5 - 4
-#0.7222222222222222 - 5
-#0.7777777777777778 - 6
-#0.6111111111111112 - 7
-#0.6666666666666666 - 8
-#0.8333333333333334 - 9
-#0.7222222222222222 - 10
-#0.6666666666666666 - 11
-#0.6666666666666666 - 12
-#0.6111111111111112 - 13
-#0.7777777777777778 - 14
-#0.5555555555555556 - 15
-#0.6111111111111112 - 16
-#0.6666666666666666 - 17
-#0.8888888888888888 - 18
-#0.7222222222222222 - 19
-#0.5555555555555556 - 20
-
-"""1. Look up why the accuracy is changing each time i train my model. Record 20 times
-
-2. https://scikit-learn.org/stable/modules/cross_validation.html
-
-3. implement random forest and xgbboost
-
-9/11
-
-1. do the grid search for random forest and xgb
-
-2. investigate/ search why accuracy is changing each time + site sources
-
-3. cross validation
-
-4. start filling out final paper doc
-
-5. transform to more formal writing(not first person, third person)
-
-9/21
-
-1. Train the model using the outcome of grid search
-2. Compare accuracy training set vs test set (log the hyperparameters, log the accuracy of the training, test sets
-3. If there is overfitting, adjust parameters and train again
-4. Do these steps for all of the models
-"""
-
-#import the models
-#define parameter
-#do the grid search
-#after doing grid search use what it gave me
-#find the accuracy of the grid search
-#record results
-#adjust the hyperparameters and run it again
-
 """Xgboost Grid Search"""
-
 from xgboost import XGBClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import LabelEncoder
@@ -376,6 +260,7 @@ dt_pred_train = dt_model.predict(X_train)
 dt_acc_train = accuracy_score(y_train, dt_pred_train)
 print("Decision Tree Classifier train accuracy:", dt_acc_train)
 
+"""Random Forest Grid Search"""
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
 
@@ -394,7 +279,6 @@ rf.fit(X_train, y_train)
 
 print('Best parameters found:\n', rf.best_params_)
 
-#Random Forest Runner
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
@@ -422,7 +306,7 @@ print("RandomForest train accuracy:", rf_acc_train)
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import GridSearchCV
 
-# KNeighbors Classifier Grid Search
+# KNeighbors Grid Search
 knn = KNeighborsClassifier()
 
 parameter_space_knn = {
@@ -477,8 +361,6 @@ print('Best parameters found for MLPClassifier:\n', mlp_grid.best_params_)
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import accuracy_score
 
-# MLPClassifier Runner
-# Replace the parameters below with the output of the grid search
 mlp_model = MLPClassifier(hidden_layer_sizes=(22,23), activation='logistic', alpha = 0.05, learning_rate= 'invscaling', solver = 'adam', max_iter= 1500, random_state=42)
 
 mlp_model.fit(X_train, y_train)
